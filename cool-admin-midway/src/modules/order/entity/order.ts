@@ -6,9 +6,9 @@ import { Column } from 'typeorm';
  * 订单信息
  */
 @EntityModel('order')
-export class DictInfoEntity extends BaseEntity {
+export class OrderEntity extends BaseEntity {
   @Column({ comment: '订单号' })
-  orderNo: number;
+  orderNo: string;
 
   @Column({ comment: '订单类型' })
   orderType: string;
