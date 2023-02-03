@@ -54,6 +54,10 @@ export default {
       // 本地上传 文件地址前缀，当且仅当mode为LOCAL时生效
       domain: 'http://127.0.0.1:8001',
     },
+    es: {
+      // 集群模式下可以配置多个地址
+      nodes: ['http://localhost:9200'],
+    },
   } as CoolConfig,
 } as
   | MidwayConfig
