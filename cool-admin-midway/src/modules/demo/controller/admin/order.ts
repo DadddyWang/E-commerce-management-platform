@@ -1,5 +1,5 @@
 import { BaseController, CoolController } from '@cool-midway/core';
-import { OrderEntity } from '../entity/order';
+import { OrderEntity } from '../../entity/order';
 
 /**
  * 订单管理
