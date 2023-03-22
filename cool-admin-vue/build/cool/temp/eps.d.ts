@@ -308,6 +308,41 @@ declare namespace Eps {
 		[key: string]: any;
 	}
 
+	interface OrderEntity {
+		/**
+		 * ID
+		 */
+		id?: number;
+		/**
+		 * 订单号
+		 */
+		orderNo?: string;
+		/**
+		 * 订单类型
+		 */
+		orderType?: string;
+		/**
+		 * 订单金额
+		 */
+		orderAmount?: number;
+		/**
+		 * 购买用户id
+		 */
+		userId?: number;
+		/**
+		 * 创建时间
+		 */
+		createTime?: Date;
+		/**
+		 * 更新时间
+		 */
+		updateTime?: Date;
+		/**
+		 * 任意键值
+		 */
+		[key: string]: any;
+	}
+
 	interface DictInfoEntity {
 		/**
 		 * ID
@@ -1296,6 +1331,63 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
+	interface DemoOrder {
+		/**
+		 * 删除
+		 */
+		delete(data?: any): Promise<any>;
+		/**
+		 * 修改
+		 */
+		update(data?: any): Promise<any>;
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<OrderEntity>;
+		/**
+		 * 分页查询
+		 */
+		page(data?: any): Promise<{
+			pagination: { size: number; page: number; total: number };
+			list: OrderEntity[];
+			[key: string]: any;
+		}>;
+		/**
+		 * 列表查询
+		 */
+		list(data?: any): Promise<OrderEntity[]>;
+		/**
+		 * 新增
+		 */
+		add(data?: any): Promise<any>;
+		/**
+		 * 权限标识
+		 */
+		permission: {
+			delete: string;
+			update: string;
+			info: string;
+			page: string;
+			list: string;
+			add: string;
+		};
+		/**
+		 * 权限状态
+		 */
+		_permission: {
+			delete: boolean;
+			update: boolean;
+			info: boolean;
+			page: boolean;
+			list: boolean;
+			add: boolean;
+		};
+		/**
+		 * 请求
+		 */
+		request: Service["request"];
+	}
+
 	interface DictInfo {
 		/**
 		 * 删除
@@ -1634,7 +1726,7 @@ declare namespace Eps {
 				user: BaseSysUser;
 			};
 		};
-		demo: { goods: DemoGoods };
+		demo: { goods: DemoGoods; order: DemoOrder };
 		dict: { info: DictInfo; type: DictType };
 		space: { info: SpaceInfo; type: SpaceType };
 		task: { info: TaskInfo };
