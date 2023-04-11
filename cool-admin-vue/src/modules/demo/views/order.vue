@@ -55,7 +55,13 @@ const Upsert = useUpsert({
 		{
 			label: "支付状态",
 			prop: "payStatus",
-			component: { name: "el-switch" },
+			component: {
+				name: "el-radio-group",
+				options: [
+					{ label: "未支付", value: 0, color: "#FF0000" },
+					{ label: "已支付", value: 1, color: "#67C23A" }
+				]
+			},
 			required: true
 		}
 	]
@@ -71,7 +77,14 @@ const Table = useTable({
 		{ label: "订单金额", prop: "orderAmount" },
 		{ label: "购买用户id", prop: "userId" },
 		{ label: "收货地", prop: "address" },
-		{ label: "支付状态", prop: "payStatus", component: { name: "cl-switch" } },
+		{
+			label: "支付状态",
+			prop: "payStatus",
+			dict: [
+				{ label: "未支付", value: 0, color: "#FF0000" },
+				{ label: "已支付", value: 1, color: "#67C23A" }
+			]
+		},
 		{ label: "创建时间", prop: "createTime" },
 		{ label: "更新时间", prop: "updateTime" },
 		{ type: "op", buttons: ["edit", "delete"] }
