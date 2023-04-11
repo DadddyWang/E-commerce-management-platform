@@ -41,7 +41,7 @@ const Upsert = useUpsert({
 		{
 			label: "订单类型",
 			prop: "orderType",
-			component: { name: "el-radio-group", options: [] },
+			component: { name: "el-input" },
 			required: true
 		},
 		{
