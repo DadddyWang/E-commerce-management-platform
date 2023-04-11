@@ -53,7 +53,7 @@ const Upsert = useUpsert({
 		{ label: "购买用户id", prop: "userId", required: true, component: { name: "el-input" } },
 		{ label: "收货地", prop: "address", required: true, component: { name: "el-input" } },
 		{
-			label: "支付状态,0未支付,1已支付",
+			label: "支付状态",
 			prop: "payStatus",
 			component: { name: "el-switch" },
 			required: true
@@ -71,7 +71,7 @@ const Table = useTable({
 		{ label: "订单金额", prop: "orderAmount" },
 		{ label: "购买用户id", prop: "userId" },
 		{ label: "收货地", prop: "address" },
-		{ label: "支付状态,0未支付,1已支付", prop: "payStatus", component: { name: "cl-switch" } },
+		{ label: "支付状态", prop: "payStatus", component: { name: "cl-switch" } },
 		{ label: "创建时间", prop: "createTime" },
 		{ label: "更新时间", prop: "updateTime" },
 		{ type: "op", buttons: ["edit", "delete"] }
