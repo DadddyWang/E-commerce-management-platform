@@ -369,6 +369,14 @@ declare namespace Eps {
 		 */
 		userId?: number;
 		/**
+		 * 收货地
+		 */
+		address?: string;
+		/**
+		 * 支付状态,0未支付,1已支付
+		 */
+		payStatus?: number;
+		/**
 		 * 创建时间
 		 */
 		createTime?: Date;
@@ -1372,6 +1380,10 @@ declare namespace Eps {
 
 	interface DemoMessage {
 		/**
+		 * message_list
+		 */
+		message_list(data?: any): Promise<any>;
+		/**
 		 * 删除
 		 */
 		delete(data?: any): Promise<any>;
@@ -1403,6 +1415,7 @@ declare namespace Eps {
 		 * 权限标识
 		 */
 		permission: {
+			message_list: string;
 			delete: string;
 			update: string;
 			info: string;
@@ -1414,6 +1427,7 @@ declare namespace Eps {
 		 * 权限状态
 		 */
 		_permission: {
+			message_list: boolean;
 			delete: boolean;
 			update: boolean;
 			info: boolean;

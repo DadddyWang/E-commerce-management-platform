@@ -18,4 +18,11 @@ export class OrderEntity extends BaseEntity {
 
   @Column({ comment: '购买用户id' })
   userId: number;
+
+  @Column({ comment: '收货地' })
+  address: string;
+
+  //支付情况,0未支付，1已支付
+  @Column({ comment: '支付状态,0未支付,1已支付' })
+  payStatus: number;
 }
