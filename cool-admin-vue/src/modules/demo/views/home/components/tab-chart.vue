@@ -3,10 +3,9 @@
 		<div class="tab-chart__header">
 			<ul class="tab-chart__tab">
 				<li class="active">销售额</li>
-				<li>访问量</li>
 			</ul>
 
-			<span class="tab-chart__year">2020</span>
+			<span class="tab-chart__year">2023</span>
 		</div>
 
 		<div class="tab-chart__container">
