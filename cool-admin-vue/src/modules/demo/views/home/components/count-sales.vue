@@ -6,17 +6,19 @@
 				<span class="value">￥15920</span>
 			</div>
 
+			<div class="card__footer">
+				<div class="sales">
+					<span class="label">今日销售额</span>
+					<span class="value">￥1298.01</span>
+				</div>
+				<div class="sales">
+					<span class="label">昨日销售额</span>
+					<span class="value">￥1123.01</span>
+				</div>
+			</div>
+
 			<div class="card__container">
 				<ul class="count-sales__cop">
-					<li>
-						<span>周同比</span>
-
-						<div class="fall">
-							<i class="el-icon-bottom-right"></i>
-							<span>-4%</span>
-						</div>
-					</li>
-
 					<li>
 						<span>日同比</span>
 
@@ -27,11 +29,6 @@
 					</li>
 				</ul>
 			</div>
-
-			<div class="card__footer">
-				<span class="label">日销售额</span>
-				<span class="value">￥1298.01</span>
-			</div>
 		</div>
 	</div>
 </template>
@@ -39,6 +36,14 @@
 <script lang="ts" setup></script>
 
 <style lang="scss" scoped>
+.card__footer {
+	display: flex;
+	justify-content: space-between;
+}
+.sales {
+	text-align: center;
+}
+
 .count-sales {
 	&__cop {
 		display: flex;

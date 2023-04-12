@@ -54,9 +54,6 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 
-// 日期
-const date = ref();
-
 // 类型
 const type = ref("day");
 
