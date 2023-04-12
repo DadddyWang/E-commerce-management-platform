@@ -51,9 +51,11 @@ const Upsert = useUpsert({
 			component: {
 				name: "el-radio-group",
 				options: [
-					{ label: "衣服", value: 0 },
-					{ label: "鞋子", value: 1, color: "#67C23A" },
-					{ label: "裤子", value: 2, color: "#E6A23C" }
+					{ label: "潮流服饰", value: 0 },
+					{ label: "数码产品", value: 1, color: "#67C23A" },
+					{ label: "日用百货", value: 2, color: "#00FFFF" },
+					{ label: "母婴用品", value: 3, color: "#FFA500" },
+					{ label: "家用电器", value: 4, color: "#FF0000" }
 				]
 			},
 			value: 0,
@@ -74,9 +76,11 @@ const Table = useTable({
 			label: "分类",
 			prop: "type",
 			dict: [
-				{ label: "衣服", value: 0 },
-				{ label: "鞋子", value: 1, color: "#67C23A" },
-				{ label: "裤子", value: 2, color: "#E6A23C" }
+				{ label: "潮流服饰", value: 0 },
+				{ label: "数码产品", value: 1, color: "#67C23A" },
+				{ label: "日用百货", value: 2, color: "#00FFFF" },
+				{ label: "母婴用品", value: 3, color: "#FFA500" },
+				{ label: "家用电器", value: 4, color: "#FF0000" }
 			]
 		},
 		{ label: "创建时间", prop: "createTime" },

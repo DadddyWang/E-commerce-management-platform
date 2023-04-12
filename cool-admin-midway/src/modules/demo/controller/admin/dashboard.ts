@@ -15,4 +15,16 @@ export class DashboardController extends BaseController {
   async getTotalAmount() {
     return this.ok(await this.service.getTotalAmount());
   }
+
+  @Get('/totalOrder', { summary: '总订单数' })
+  async getTotalOrder() {
+    return this.ok(await this.service.getTotalOrder());
+  }
+
+  //各地销售额数据
+  @Get('/areaAmount', { summary: '各地销售额' })
+  async getAreaAmount() {
+    const res = await this.service.getAreaAmount();
+    return this.ok(res);
+  }
 }

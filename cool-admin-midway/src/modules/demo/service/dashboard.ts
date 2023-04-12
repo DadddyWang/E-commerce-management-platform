@@ -13,8 +13,34 @@ export class DashboardService extends BaseService {
   OrderEntity: Repository<OrderEntity>;
 
   async getTotalAmount() {
-    const res = await this.OrderEntity.query(
+    const res = {};
+    res['totalAmount'] = await this.OrderEntity.query(
       'SELECT SUM(orderAmount) FROM cool.order WHERE payStatus = 1'
+    );
+    res['todayAmount'] = await this.OrderEntity.query(
+      'SELECT SUM(orderAmount) FROM cool.order WHERE payStatus = 1 AND DATE_FORMAT(createTime, "%Y-%m-%d") = CURDATE()'
+    );
+    res['yesterdayAmount'] = await this.OrderEntity.query(
+      'SELECT SUM(orderAmount) FROM cool.order WHERE payStatus = 1 AND DATE_FORMAT(createTime, "%Y-%m-%d") = DATE_SUB(CURDATE(), INTERVAL 1 DAY)'
+    );
+    return res;
+  }
+
+  async getTotalOrder() {
+    //拿到未支付的订单笔数与已支付的订单笔数
+    const res = {};
+    res['payOrder'] = await this.OrderEntity.query(
+      'SELECT COUNT(*) FROM cool.order WHERE payStatus = 1'
+    );
+    res['unpayOrder'] = await this.OrderEntity.query(
+      'SELECT COUNT(*) FROM cool.order WHERE payStatus = 0'
+    );
+    return res;
+  }
+
+  async getAreaAmount() {
+    const res = await this.OrderEntity.query(
+      'SELECT address, SUM(orderAmount) FROM cool.order WHERE payStatus = 1 GROUP BY address'
     );
     return res;
   }

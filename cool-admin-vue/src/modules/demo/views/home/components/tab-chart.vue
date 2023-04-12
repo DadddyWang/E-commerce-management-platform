@@ -71,7 +71,7 @@ const chartOption = reactive<any>({
 	series: [
 		{
 			barWidth,
-			name: "付款笔数",
+			name: "付费金额",
 			type: "bar",
 			data: [],
 			itemStyle: {
