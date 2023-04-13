@@ -45,8 +45,7 @@ const Upsert = useUpsert({
 			prop: "text",
 			component: { name: "cl-editor-wang", props: { height: 400 } },
 			required: true
-		},
-		{ label: "是否阅读", prop: "is_read", required: true, component: { name: "el-input" } }
+		}
 	]
 });
 

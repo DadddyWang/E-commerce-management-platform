@@ -44,4 +44,20 @@ export class DashboardService extends BaseService {
     );
     return res;
   }
+
+  //获取每个月的销售额
+  async getMonthAmount() {
+    const res = await this.OrderEntity.query(
+      'SELECT DATE_FORMAT(createTime, "%Y-%m") AS month, SUM(orderAmount) FROM cool.order WHERE payStatus = 1 GROUP BY month'
+    );
+    return res;
+  }
+
+  //订单商品类别销售额
+  async getCategoryAmount() {
+    const res = await this.OrderEntity.query(
+      'SELECT orderType, SUM(orderAmount) FROM cool.order WHERE payStatus = 1 GROUP BY orderType'
+    );
+    return res;
+  }
 }

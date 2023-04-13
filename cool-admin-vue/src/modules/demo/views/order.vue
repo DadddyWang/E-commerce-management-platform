@@ -63,6 +63,18 @@ const Upsert = useUpsert({
 				]
 			},
 			required: true
+		},
+		{
+			label: "发货状态",
+			prop: "shipmentStatus",
+			component: {
+				name: "el-radio-group",
+				options: [
+					{ label: "未发货", value: 0, color: "#FF0000" },
+					{ label: "已发货", value: 1, color: "#67C23A" }
+				]
+			},
+			required: true
 		}
 	]
 });
@@ -83,6 +95,14 @@ const Table = useTable({
 			dict: [
 				{ label: "未支付", value: 0, color: "#FF0000" },
 				{ label: "已支付", value: 1, color: "#67C23A" }
+			]
+		},
+		{
+			label: "发货状态",
+			prop: "shipmentStatus",
+			dict: [
+				{ label: "未发货", value: 0, color: "#FF0000" },
+				{ label: "已发货", value: 1, color: "#67C23A" }
 			]
 		},
 		{ label: "创建时间", prop: "createTime" },

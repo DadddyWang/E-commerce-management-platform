@@ -27,4 +27,18 @@ export class DashboardController extends BaseController {
     const res = await this.service.getAreaAmount();
     return this.ok(res);
   }
+
+  //获取每个月的销售额
+  @Get('/monthAmount', { summary: '每月销售额' })
+  async getMonthAmount() {
+    const res = await this.service.getMonthAmount();
+    return this.ok(res);
+  }
+
+  //订单商品类别销售额
+  @Get('/categoryAmount', { summary: '订单商品类别销售额' })
+  async getCategoryAmount() {
+    const res = await this.service.getCategoryAmount();
+    return this.ok(res);
+  }
 }

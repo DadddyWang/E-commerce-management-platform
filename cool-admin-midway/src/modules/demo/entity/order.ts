@@ -25,4 +25,8 @@ export class OrderEntity extends BaseEntity {
   //支付情况,0未支付，1已支付
   @Column({ comment: '支付状态,0未支付,1已支付' })
   payStatus: number;
+
+  //发货情况,0未发货，1已发货
+  @Column({ comment: '发货状态,0未发货,1已发货' })
+  shipmentStatus: number;
 }
