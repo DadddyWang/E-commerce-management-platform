@@ -5,8 +5,6 @@
 			<cl-refresh-btn />
 			<!-- 新增按钮 -->
 			<cl-add-btn />
-			<!-- 删除按钮 -->
-			<cl-multi-delete-btn />
 			<cl-flex1 />
 			<!-- 关键字搜索 -->
 			<cl-search-key />
@@ -43,7 +41,7 @@ const Upsert = useUpsert({
 		{
 			label: "消息内容",
 			prop: "text",
-			component: { name: "cl-editor-wang", props: { height: 400 } },
+			component: { name: "el-input" },
 			required: true
 		}
 	]
@@ -54,13 +52,8 @@ const Table = useTable({
 	columns: [
 		{ type: "selection" },
 		{ label: "ID", prop: "id" },
-		{ label: "发送者id", prop: "sender_id" },
-		{ label: "接收者id", prop: "receiver_id" },
 		{ label: "消息标题", prop: "title" },
 		{ label: "消息内容", prop: "text" },
-		{ label: "是否阅读", prop: "is_read" },
-		{ label: "创建时间", prop: "createTime" },
-		{ label: "更新时间", prop: "updateTime" },
 		{ type: "op", buttons: ["edit", "delete"] }
 	]
 });

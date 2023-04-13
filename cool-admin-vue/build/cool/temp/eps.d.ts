@@ -377,6 +377,10 @@ declare namespace Eps {
 		 */
 		payStatus?: number;
 		/**
+		 * 发货状态,0未发货,1已发货
+		 */
+		shipmentStatus?: number;
+		/**
 		 * 创建时间
 		 */
 		createTime?: Date;
