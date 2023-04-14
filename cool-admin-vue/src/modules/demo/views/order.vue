@@ -41,7 +41,17 @@ const Upsert = useUpsert({
 		{
 			label: "订单类型",
 			prop: "orderType",
-			component: { name: "el-input" },
+			component: {
+				name: "el-radio-group",
+				options: [
+					{ label: "潮流服饰", value: "潮流服饰" },
+					{ label: "数码产品", value: "数码产品", color: "#67C23A" },
+					{ label: "日用百货", value: "日用百货", color: "#00FFFF" },
+					{ label: "母婴用品", value: "母婴用品", color: "#FFA500" },
+					{ label: "家用电器", value: "家用电器", color: "#FF0000" }
+				]
+			},
+			value: 0,
 			required: true
 		},
 		{
@@ -85,7 +95,17 @@ const Table = useTable({
 		{ type: "selection" },
 		{ label: "ID", prop: "id" },
 		{ label: "订单号", prop: "orderNo" },
-		{ label: "订单类型", prop: "orderType", dict: [] },
+		{
+			label: "订单类型",
+			prop: "orderType",
+			dict: [
+				{ label: "潮流服饰", value: "潮流服饰" },
+				{ label: "数码产品", value: "数码产品", color: "#67C23A" },
+				{ label: "日用百货", value: "日用百货", color: "#00FFFF" },
+				{ label: "母婴用品", value: "母婴用品", color: "#FFA500" },
+				{ label: "家用电器", value: "家用电器", color: "#FF0000" }
+			]
+		},
 		{ label: "订单金额", prop: "orderAmount" },
 		{ label: "购买用户id", prop: "userId" },
 		{ label: "收货地", prop: "address" },
