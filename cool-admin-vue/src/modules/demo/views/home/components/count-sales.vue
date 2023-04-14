@@ -47,7 +47,10 @@ const fetchTotalPrice = async () => {
 	todayPrice.value = Number(todayAmount);
 	totalPrice.value = Number(totalAmount);
 	yesterdayPrice.value = Number(yesterdayAmount);
-	calcRise.value = ((todayPrice.value - yesterdayPrice.value) / yesterdayPrice.value) * 100 || 0;
+	calcRise.value =
+		Number(
+			(((todayPrice.value - yesterdayPrice.value) / yesterdayPrice.value) * 100).toFixed(2)
+		) || 0;
 };
 onMounted(() => {
 	fetchTotalPrice();

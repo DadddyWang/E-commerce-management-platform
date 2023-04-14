@@ -34,7 +34,9 @@ const fetchTotalPrice = async () => {
 	const { payOrder, unpayOrder } = (await request.get("/dev/dashboard/totalOrder")) as any;
 	isPayed.value = Number(payOrder);
 	notPayed.value = Number(unpayOrder);
-	translateRate.value = Number((isPayed.value / (isPayed.value + notPayed.value)) * 100);
+	translateRate.value = Number(
+		((isPayed.value / (isPayed.value + notPayed.value)) * 100).toFixed(2)
+	);
 };
 onMounted(() => {
 	fetchTotalPrice();

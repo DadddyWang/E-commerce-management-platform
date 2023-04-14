@@ -28,7 +28,9 @@ const fetchNotDelivered = async () => {
 			delivered.value = Number(element.number);
 		}
 	});
-	notDeliveredPercent.value = (notDelivered.value / (notDelivered.value + delivered.value)) * 100;
+	notDeliveredPercent.value = Number(
+		((notDelivered.value / (notDelivered.value + delivered.value)) * 100).toFixed(2)
+	);
 };
 const notDeliveredPercent = ref(0);
 const notDelivered = ref(0);
