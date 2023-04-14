@@ -3,17 +3,17 @@
 		<div class="card">
 			<div class="card__header">
 				<span class="label">总销售额</span>
-				<span class="value">￥15920</span>
+				<span class="value">{{ totalPrice }}</span>
 			</div>
 
 			<div class="card__footer">
 				<div class="sales">
 					<span class="label">今日销售额</span>
-					<span class="value">￥1298.01</span>
+					<span class="value">{{ toadyPrice }}</span>
 				</div>
 				<div class="sales">
 					<span class="label">昨日销售额</span>
-					<span class="value">￥1123.01</span>
+					<span class="value">{{ yesterdayPrice }}</span>
 				</div>
 			</div>
 
@@ -33,7 +33,24 @@
 	</div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref, onMounted } from "vue";
+import { request } from "/@/cool/service/request";
+const toadyPrice = ref(0);
+const totalPrice = ref(0);
+const yesterdayPrice = ref(0);
+const fetchTotalPrice = async () => {
+	const { todayAmount, totalAmount, yesterdayAmount } = (await request.get(
+		"/dev/dashboard/totalAmount"
+	)) as any;
+	toadyPrice.value = Number(todayAmount);
+	totalPrice.value = Number(totalAmount);
+	yesterdayPrice.value = Number(yesterdayAmount);
+};
+onMounted(() => {
+	fetchTotalPrice();
+});
+</script>
 
 <style lang="scss" scoped>
 .card__footer {
