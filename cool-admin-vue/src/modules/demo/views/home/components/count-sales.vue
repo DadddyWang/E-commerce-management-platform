@@ -24,7 +24,7 @@
 
 						<div class="rise">
 							<i class="el-icon-top-right"></i>
-							<span>{{ calcRise }}</span>
+							<span>{{ calcRise }}%</span>
 						</div>
 					</li>
 				</ul>
@@ -39,6 +39,7 @@ import { request } from "/@/cool/service/request";
 const todayPrice = ref(0);
 const totalPrice = ref(0);
 const yesterdayPrice = ref(0);
+const calcRise = ref(0);
 const fetchTotalPrice = async () => {
 	const { todayAmount, totalAmount, yesterdayAmount } = (await request.get(
 		"/dev/dashboard/totalAmount"
@@ -46,9 +47,8 @@ const fetchTotalPrice = async () => {
 	todayPrice.value = Number(todayAmount);
 	totalPrice.value = Number(totalAmount);
 	yesterdayPrice.value = Number(yesterdayAmount);
+	calcRise.value = ((todayPrice.value - yesterdayPrice.value) / yesterdayPrice.value) * 100 || 0;
 };
-//计算日同比增幅
-const calcRise = ((todayPrice.value - yesterdayPrice.value) / yesterdayPrice.value) * 100 || "0%";
 onMounted(() => {
 	fetchTotalPrice();
 });
