@@ -15,8 +15,17 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
-
+import { reactive, onMounted, ref } from "vue";
+import { request } from "/@/cool/service/request";
+const monthData = ref<number[]>([]);
+const fetchData = async () => {
+	const data: any[] = await request.get("/dev/dashboard/monthAmount");
+	console.log("data", data);
+	data.forEach((item: any) => {
+		monthData.value.push(Number(item.monthAmount));
+	});
+	chartOption.series[0].data = monthData.value;
+};
 const barWidth = 15;
 
 const chartOption = reactive<any>({
@@ -93,8 +102,10 @@ const chartOption = reactive<any>({
 });
 
 chartOption.xAxis.data = new Array(12).fill(1).map((e, i) => i + 1 + "月");
-chartOption.series[0].data = new Array(12).fill(1).map(() => parseInt(String(Math.random() * 100)));
 chartOption.series[1].data = new Array(12).fill(100);
+onMounted(() => {
+	fetchData();
+});
 </script>
 
 <style lang="scss" scoped>
