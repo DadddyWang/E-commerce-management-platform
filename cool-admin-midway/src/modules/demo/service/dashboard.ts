@@ -72,4 +72,13 @@ export class DashboardService extends BaseService {
     );
     return res;
   }
+
+  //发货情况
+  async getDelivery() {
+    const res = {};
+    res['delivery'] = await this.OrderEntity.query(
+      'SELECT shipmentStatus, COUNT(*) FROM cool.order GROUP BY shipmentStatus'
+    );
+    return res;
+  }
 }

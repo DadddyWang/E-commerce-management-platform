@@ -41,4 +41,11 @@ export class DashboardController extends BaseController {
     const res = await this.service.getCategoryAmount();
     return this.ok(res);
   }
+
+  //发货情况
+  @Get('/delivery', { summary: '发货情况' })
+  async getDelivery() {
+    const res = await this.service.getDelivery();
+    return this.ok(res);
+  }
 }
