@@ -21,30 +21,10 @@
 			</div>
 
 			<ul class="sales-rank__list">
-				<li>
-					<span>1</span>
-					<span>北京市</span>
-					<span>323201</span>
-				</li>
-				<li>
-					<span>2</span>
-					<span>杭州市</span>
-					<span>278442</span>
-				</li>
-				<li>
-					<span>3</span>
-					<span>上海市</span>
-					<span>202368</span>
-				</li>
-				<li>
-					<span>4</span>
-					<span>深圳市</span>
-					<span>156320</span>
-				</li>
-				<li>
-					<span>5</span>
-					<span>广州市</span>
-					<span>98852</span>
+				<li v-for="(item, index) in totalList" :key="item.address">
+					<span>{{ index + 1 }}</span>
+					<span>{{ item.address }}</span>
+					<span>{{ item.count }}</span>
 				</li>
 			</ul>
 		</div>
@@ -52,8 +32,42 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
-
+import { reactive, ref, onMounted, watch, unref } from "vue";
+import { request } from "/@/cool/service/request";
+const dayList = ref<any[]>([]);
+const weekList = ref<any[]>([]);
+const monthList = ref<any[]>([]);
+const yearList = ref<any[]>([]);
+const totalList = ref<any[]>([]);
+const fetchData = async () => {
+	const { monthAmount, todayAmount, weekAmount, yearAmount } = (await request.get(
+		"/dev/dashboard/areaAmount"
+	)) as any;
+	monthAmount.forEach((element: any) => {
+		monthList.value.push({
+			address: element.address,
+			count: element.monthAmount
+		});
+	});
+	todayAmount.forEach((element: any) => {
+		dayList.value.push({
+			address: element.address,
+			count: element.todayAmount
+		});
+	});
+	weekAmount.forEach((element: any) => {
+		weekList.value.push({
+			address: element.address,
+			count: element.weekAmount
+		});
+	});
+	yearAmount.forEach((element: any) => {
+		yearList.value.push({
+			address: element.address,
+			count: element.yearAmount
+		});
+	});
+};
 // 类型
 const type = ref("day");
 
@@ -78,10 +92,27 @@ const options = reactive({
 		}
 	]
 });
-
+watch(
+	type,
+	(newVal) => {
+		if (newVal === "day") {
+			totalList.value = [...unref(dayList)];
+		} else if (newVal === "week") {
+			totalList.value = [...unref(weekList)];
+		} else if (newVal === "month") {
+			totalList.value = [...unref(monthList)];
+		} else if (newVal === "year") {
+			totalList.value = [...unref(yearList)];
+		}
+	},
+	{ immediate: true, deep: true }
+);
 function changeDate(value: string) {
 	type.value = value;
 }
+onMounted(() => {
+	fetchData();
+});
 </script>
 
 <style lang="scss" scoped>
