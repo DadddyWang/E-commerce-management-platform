@@ -9,7 +9,7 @@
 			<div class="card__footer">
 				<div class="sales">
 					<span class="label">今日销售额</span>
-					<span class="value">{{ toadyPrice }}</span>
+					<span class="value">{{ todayPrice }}</span>
 				</div>
 				<div class="sales">
 					<span class="label">昨日销售额</span>
@@ -24,7 +24,7 @@
 
 						<div class="rise">
 							<i class="el-icon-top-right"></i>
-							<span>+7%</span>
+							<span>{{ calcRise }}</span>
 						</div>
 					</li>
 				</ul>
@@ -36,17 +36,19 @@
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
 import { request } from "/@/cool/service/request";
-const toadyPrice = ref(0);
+const todayPrice = ref(0);
 const totalPrice = ref(0);
 const yesterdayPrice = ref(0);
 const fetchTotalPrice = async () => {
 	const { todayAmount, totalAmount, yesterdayAmount } = (await request.get(
 		"/dev/dashboard/totalAmount"
 	)) as any;
-	toadyPrice.value = Number(todayAmount);
+	todayPrice.value = Number(todayAmount);
 	totalPrice.value = Number(totalAmount);
 	yesterdayPrice.value = Number(yesterdayAmount);
 };
+//计算日同比增幅
+const calcRise = ((todayPrice.value - yesterdayPrice.value) / yesterdayPrice.value) * 100 || "0%";
 onMounted(() => {
 	fetchTotalPrice();
 });
