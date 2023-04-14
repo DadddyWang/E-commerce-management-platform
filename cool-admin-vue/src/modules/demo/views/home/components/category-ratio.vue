@@ -11,8 +11,25 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
-
+import { reactive, ref, onMounted } from "vue";
+import { request } from "/@/cool/service/request";
+const categoryData = ref<any[]>([]);
+const type = ref<any[]>([]);
+const fetchData = async () => {
+	const data: any[] = await request.get("/dev/dashboard/categoryAmount");
+	data.forEach((element: any) => {
+		categoryData.value.push({
+			value: element.categoryAmount,
+			name: element.orderType
+		});
+		type.value.push(element.orderType);
+	});
+	chartOption.series[0].data = categoryData.value;
+	chartOption.legend.data = type.value;
+};
+onMounted(() => {
+	fetchData();
+});
 const chartOption = reactive({
 	tooltip: {
 		trigger: "item",
