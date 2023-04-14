@@ -38,9 +38,21 @@ export class DashboardService extends BaseService {
     return res;
   }
 
+  //拿到各地区今日 本周 本月 全年的销售额
   async getAreaAmount() {
-    const res = await this.OrderEntity.query(
-      'SELECT address, SUM(orderAmount) FROM cool.order WHERE payStatus = 1 GROUP BY address'
+    const res = {};
+    //地区字段是address
+    res['todayAmount'] = await this.OrderEntity.query(
+      'SELECT address, SUM(orderAmount) FROM cool.order WHERE payStatus = 1 AND DATE_FORMAT(createTime, "%Y-%m-%d") = CURDATE() GROUP BY address'
+    );
+    res['weekAmount'] = await this.OrderEntity.query(
+      'SELECT address, SUM(orderAmount) FROM cool.order WHERE payStatus = 1 AND YEARWEEK(DATE_FORMAT(createTime, "%Y-%m-%d")) = YEARWEEK(NOW()) GROUP BY address'
+    );
+    res['monthAmount'] = await this.OrderEntity.query(
+      'SELECT address, SUM(orderAmount) FROM cool.order WHERE payStatus = 1 AND DATE_FORMAT(createTime, "%Y-%m") = DATE_FORMAT(CURDATE(), "%Y-%m") GROUP BY address'
+    );
+    res['yearAmount'] = await this.OrderEntity.query(
+      'SELECT address, SUM(orderAmount) FROM cool.order WHERE payStatus = 1 AND YEAR(createTime) = YEAR(NOW()) GROUP BY address'
     );
     return res;
   }
