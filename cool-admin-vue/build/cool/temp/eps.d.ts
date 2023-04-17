@@ -322,6 +322,10 @@ declare namespace Eps {
 		 */
 		receiver_id?: number;
 		/**
+		 * 通知类别
+		 */
+		type?: number;
+		/**
 		 * 消息标题
 		 */
 		title?: string;

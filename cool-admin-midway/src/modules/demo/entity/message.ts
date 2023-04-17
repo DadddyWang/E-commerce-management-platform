@@ -13,6 +13,10 @@ export class MessageEntity extends BaseEntity {
   @Column({ comment: '接收者id' })
   receiver_id: number;
 
+  //通知类别 1:系统通知 3:活动通知
+  @Column({ comment: '通知类别' })
+  type: number;
+
   @Column({ comment: '消息标题' })
   title: string;
 

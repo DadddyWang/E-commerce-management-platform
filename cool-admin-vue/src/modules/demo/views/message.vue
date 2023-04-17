@@ -37,9 +37,10 @@ const Upsert = useUpsert({
 	items: [
 		{ label: "发送者id", prop: "sender_id", required: true, component: { name: "el-input" } },
 		{ label: "接收者id", prop: "receiver_id", required: true, component: { name: "el-input" } },
-		{ label: "消息标题", prop: "title", required: true, component: { name: "el-input" } },
+		{ label: "通知类别", prop: "type", required: true, component: { name: "el-input" } },
+		{ label: "通知标题", prop: "title", required: true, component: { name: "el-input" } },
 		{
-			label: "消息内容",
+			label: "通知内容",
 			prop: "text",
 			component: { name: "el-input" },
 			required: true
@@ -52,8 +53,17 @@ const Table = useTable({
 	columns: [
 		{ type: "selection" },
 		{ label: "ID", prop: "id" },
-		{ label: "消息标题", prop: "title" },
-		{ label: "消息内容", prop: "text" },
+		{ label: "通知标题", prop: "title" },
+		{ label: "通知内容", prop: "text" },
+		//有颜色的
+		{
+			label: "通知类别",
+			prop: "type",
+			dict: [
+				{ label: "系统通知", value: 1 },
+				{ label: "活动通知", value: 2, color: "#67C23A" }
+			]
+		},
 		{ type: "op", buttons: ["edit", "delete"] }
 	]
 });
